@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.String;
 import java.lang.System;
@@ -220,21 +221,238 @@ class Array{
         }
         return arr;
     }
+    static void arrPrint1(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    static void arrPrint2(int arr[]){
+        for(int i:arr){
+            System.out.print(i+" ");
+        }
+    }
+    static void arrPrint3(int arr[]){
+        int i=0;
+        while(i<arr.length){
+            System.out.print(arr[i]+" ");
+            i++;
+        }
+    }
+    static void arrPrint4(int arr[]){
+        int i=0;
+        do{
+            System.out.print(arr[i]+" ");
+            i++;
+        }while(i<arr.length);
+    }
+    static void arrPrint5(int arr[]){
+        System.out.print(arr[0]+" ");
+        System.out.print(arr[1]+" ");
+        System.out.print(arr[2]+" ");
+        System.out.print(arr[3]+" ");
+        System.out.print(arr[4]+" ");
+        System.out.print(arr[5]+" ");
+        System.out.print(arr[6]+" ");
+    }
+    static void arrPrint6(int arr[],int n){
+        if(n>=arr.length)
+            return;
+        System.out.print(arr[n]+" ");
+        arrPrint6(arr,n+1);
+    }
+    static void arrPrint7(int arr[]){
+        System.out.println(Arrays.toString(arr));
+    }
+    static void arrayPrint(){
+        do{
+        System.out.println("\nPrinting an Array");
+        System.out.println("1) Using for Loop");
+        System.out.println("2) Using for-each Loop");
+        System.out.println("3) Using while Loop");
+        System.out.println("4) Using do-while Loop");
+        System.out.println("5) Using Manual Printing");
+        System.out.println("6) Using String");
+        System.out.println("7) Using Recursion");
+        System.out.print("\nEnter your Choice: ");
+        switch(Input.choice()){
+            case 1: arrPrint1(Input.ReadArray());
+                    break;
+            case 2: arrPrint2(Input.ReadArray());
+                    break;
+            case 3: arrPrint3(Input.ReadArray());
+                    break;
+            case 4: arrPrint4(Input.ReadArray());
+                    break;
+            case 5: arrPrint5(Input.ReadArray());
+                    break;
+            case 6: arrPrint6(Input.ReadArray(),0);
+                    break;
+            case 7: arrPrint7(Input.ReadArray());
+                    break;
+            case -1: return;
+            default: System.out.println("Invalid Choice!!!");
+        }
+        }while(true);
+    }
+    static void middle(int arr[]){
+        int mid=arr[arr.length/2];
+        System.out.println("Mid Element: "+mid+"\nMiddle Element Index: "+arr.length/2);
+    }
+    static void leftAndRightElements(int arr[]){
+        System.out.print("Left SubArray Elements: ");
+        for(int i=0;i<arr.length/2;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.print("\nRight SubArray Elements: ");
+        for(int i=arr.length/2;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    static void sortAscending(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            for(int j=0;j<arr.length-i-1;j++){
+                if(arr[j]>arr[j+1]){
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+        System.out.println("After Sorting: ");
+        Input.printArray(arr);
+    }
+    static void arrCopy1(int arr[]){
+        int dup[]=new int[arr.length];
+        for(int i=0;i<arr.length;i++){
+            dup[i]=arr[i];
+        }
+        System.out.println("Original Array: ");
+        Input.printArray(arr);
+        System.out.println("\nCopied Array: ");
+        Input.printArray(dup);
+    }
+    static void arrCopy2(int arr[]){
+        int arr2[]=new int[arr.length];
+        System.arraycopy(arr, 0, arr2, 0, arr.length);
+        System.out.println("Original Array: ");
+        Input.printArray(arr);
+        System.out.println("\nCopied Array: ");
+        Input.printArray(arr2);
+    }
+    static void arrCopy3(int arr[]){
+        int arr2[]=Arrays.copyOf(arr, arr.length);
+        System.out.println("Original Array: ");
+        Input.printArray(arr);
+        System.out.println("\nCopied Array: ");
+        Input.printArray(arr2);
+    }
+    static void arrCopying(){
+        do{
+            System.out.println("\n\nCopying Array Elements");
+            System.out.println("1) Manual Method");
+            System.out.println("2) Using arraycopy Method");
+            System.out.println("3) Using copyOf Method");
+            System.out.print("\nEnter your Choice: ");
+            switch(Input.choice()){
+                case 1: arrCopy1(Input.ReadArray());
+                        break;
+                case 2: arrCopy2(Input.ReadArray());
+                        break;
+                case 3: arrCopy3(Input.ReadArray());
+                        break;
+                case -1: return;
+                default: System.out.println("Invalid Choice!!");
+            }
+        }while(true);
+    }
+    static void evenAndOdd(int arr[])
+    {
+        System.out.print("Even Elements: ");
+        for(int i:arr){
+            if(i%2==0){
+                System.out.print(i+" ");
+            }
+        }
+        System.out.print("\nOdd Elements: ");
+        for(int i:arr){
+            if(i%2!=0){
+                System.out.print(i+" ");
+            }
+        }
+    }
+    static void seperateMid(int arr[]){
+        int a1[]=new int[arr.length/2];
+        System.arraycopy(arr, 0, a1, 0, arr.length/2);
+        int a2[]=new int[arr.length-(arr.length/2)];
+        System.arraycopy(arr, arr.length/2, a2, 0, arr.length/2);
+        System.out.print("Before Mid: ");
+        Input.printArray(a1);
+        System.out.print("\nAfter Mid: ");
+        Input.printArray(a2);
+    }
+    static void ascAndDescMid(int arr[]){
+        int a1[]=new int[arr.length/2];
+        System.arraycopy(arr, 0, a1, 0, arr.length/2);
+        int a2[]=new int[arr.length-(arr.length/2)];
+        System.arraycopy(arr, arr.length/2, a2, 0, arr.length/2);
+        sortAscending(a1);
+        Reverse(a2);
+        System.out.print("\nBefore Mid(Ascending): ");
+        Input.printArray(a1);
+        System.out.print("\nAfter Mid(Reverse): ");
+        Input.printArray(a2);
+    }
+    static void replaceGreaterThanOld(int arr[],int a,int new1){
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]>a){
+                arr[i]=new1;
+            }
+        }
+        System.out.print("After Replacing: ");
+        Input.printArray(arr);
+    }
+    static void firstAscSecondPartRev(int arr[]){
+        int a1[]=new int[arr.length/2];
+        System.arraycopy(arr, 0, a1, 0, arr.length/2);
+        int a2[]=new int[arr.length-(arr.length/2)];
+        System.arraycopy(arr, arr.length/2, a2, 0, arr.length/2);
+        int a3[]=new int[a2.length/2];
+        int j=a2.length/2;
+        for(int i=0;i<a2.length/2;i++){
+            a3[i]=a2[j++];
+        }
+        System.out.print("\nBefore Mid(Ascending): ");
+        Input.printArray(a1);
+        System.out.print("\nAfter Mid: ");
+        Input.printArray(a2);
+        System.out.print("\nSecond Part(Reverse): ");
+        Input.printArray(a3);
+    }
     static void option(){
         do{
-            System.out.println("\nARRAY OPERATIONS: ");
+            System.out.println("\n\nARRAY OPERATIONS: ");
             System.out.println("1) Divisible By Two and Three");
             System.out.println("2) Sum of Elements Greater than 80 equals 40");
             System.out.println("3) Sum of Even and Odd Elements");
             System.out.println("4) Maximum and Minimum Element in Array");
             System.out.println("5) Sum of Array Elements");
             System.out.println("6) Replace Old with New");
-            System.out.println("7) Reversing and Array");
+            System.out.println("7) Reversing an Array");
             System.out.println("8) Replace only First Found");
             System.out.println("9) Replace All Except First Element");
             System.out.println("10) Count of Old Element");
             System.out.println("11) Update Last Old Element");
-            System.out.print("Enter your choice: ");
+            System.out.println("12) Print Array in Different Ways");
+            System.out.println("13) Middle Element and Index");
+            System.out.println("14) Left and Right SubArray Elements");
+            System.out.println("15) Sort in Ascending Order");
+            System.out.println("16) Copying Array Elements");
+            System.out.println("17) Even and Odd Elements in Array"); 
+            System.out.println("18) Copying Mid Elements in two Seperate Arrays");
+            System.out.println("19) First Half in Ascending Order, Second Half in Descending Order");
+            System.out.println("20) If Element Greater than Old Replace with New");
+            System.out.println("21) First Half in Ascending, Second Half, Second Part in Reverse Order");
+            System.out.print("\nEnter your choice: ");
             switch(Input.choice()){
                 case 1: DivisibleByTwoAndThree(Input.ReadArray());
                         break;
@@ -257,6 +475,26 @@ class Array{
                 case 10: OldCount(Input.ReadArray(), Input.choice());
                          break;
                 case 11: Input.printArray(ReplaceLast(Input.ReadArray(), Input.choice(), Input.choice()));
+                         break;
+                case 12: arrayPrint();
+                         break;
+                case 13: middle(Input.ReadArray());
+                         break;
+                case 14: leftAndRightElements(Input.ReadArray());
+                         break;
+                case 15: sortAscending(Input.ReadArray());
+                         break;
+                case 16: arrCopying();
+                         break;
+                case 17: evenAndOdd(Input.ReadArray());
+                         break;
+                case 18: seperateMid(Input.ReadArray());
+                         break;
+                case 19: ascAndDescMid(Input.ReadArray());
+                         break;
+                case 20: replaceGreaterThanOld(Input.ReadArray(), Input.choice(), Input.choice());
+                         break;
+                case 21: firstAscSecondPartRev(Input.ReadArray());
                          break;
                 case -1: return;
                 default: System.out.println("Invalid Choice!!!");
@@ -533,6 +771,7 @@ class Sorting{
 class Input{
     static Scanner sc=new Scanner(System.in);
     static int choice(){
+        System.out.print("Enter Element: ");
         return sc.nextInt();
     }
     static String choice1(){
