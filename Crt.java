@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.lang.String;
 import java.lang.System;
-//import java.io.IOException;
+
 class Swapping{
     static void m1(int a,int b){
         System.out.println("Before Swapping: ");
@@ -719,6 +719,54 @@ class Sorting{
         quickSort2(a, lp+1, HIndex);
         return a;
     }
+    static void insertionSort(int a[]){
+        int i,j,temp,n=a.length;
+        for(i=1;i<n;i++){
+            temp=a[i];
+            j=i-1;
+            while(j>=0 && a[j]>temp){
+                a[j+1]=a[j];
+                j--;
+            }
+            a[j+1]=temp;
+        }
+        System.out.println("After Sorting: ");
+        Input.printArray(a);
+    }
+    static void mergeSort(int a[],int n){
+        if(n<2)
+            return;
+        int i,mid=n/2;
+        int[] l=new int[mid];
+        int[] r=new int[n-mid];
+        for(i=0;i<mid;i++){
+            l[i]=a[i];
+        }
+        for(i=mid;i<n;i++){
+            r[i-mid]=a[i];
+        }
+        mergeSort(l, mid);
+        mergeSort(r, n-mid);
+        merge(a,l,r,mid,n-mid);
+        Input.printArray(a);
+    }
+    static void merge(int[] a,int[] l,int[] r,int left,int right){
+        int i=0,j=0,k=0;
+        while(i<left && j<right){
+            if(l[i]<=r[j]){
+                a[k++]=l[i++];
+            }
+            else{
+                a[k++]=r[j++];
+            }
+            while(i<left){
+                a[k++]=l[i++];
+            }
+            while(j<right){
+                a[k++]=r[j++];
+            }
+        }
+    }
     static void TypeoFSort(){
         do{
             System.out.println("\n\nSORTING TYPE");
@@ -728,6 +776,8 @@ class Sorting{
             System.out.println("4) Selection Sort(Decreasing Order)");
             System.out.println("5) Quick Sort(Increasing Order)");
             System.out.println("6) Quick Sort(Decreasing Order)");
+            System.out.println("7) Insertion Sort(Increasing Order)");
+            System.out.println("8) Merge Sort(Increasing Order)");
             System.out.print("Enter your Choice: ");
             switch(Input.choice()){
                 case 1: Input.printArray(BubbleSort1(Input.ReadArray()));
@@ -743,6 +793,10 @@ class Sorting{
                         break;
                 case 6: int arr1[]=Input.ReadArray();
                         Input.printArray(quickSort2(arr1, 0, arr1.length));
+                case 7: insertionSort(Input.ReadArray());
+                        break;
+                case 8: mergeSort(Input.ReadArray(), Input.choice());
+                        break;
                 case -1: return;
                 default: System.out.println("Invalid Choice!!");
             }
@@ -754,6 +808,8 @@ class Sorting{
             System.out.println("1) Bubble Sort");
             System.out.println("2) Selection Sort");
             System.out.println("3) Quick Sort");
+            System.out.println("4) Insertion Sort");
+            System.out.println("5) Merge Sort");
             System.out.print("Enter your choice: ");
             switch(Input.choice()){
                 case 1: TypeoFSort();
@@ -761,6 +817,10 @@ class Sorting{
                 case 2: TypeoFSort();
                         break;
                 case 3: TypeoFSort();
+                        break;
+                case 4: TypeoFSort();
+                        break;
+                case 5: TypeoFSort();
                         break;
                 case -1: return;
                 default: System.out.println("Invalid Choice!!");
@@ -771,7 +831,6 @@ class Sorting{
 class Input{
     static Scanner sc=new Scanner(System.in);
     static int choice(){
-        System.out.print("Enter Element: ");
         return sc.nextInt();
     }
     static String choice1(){
